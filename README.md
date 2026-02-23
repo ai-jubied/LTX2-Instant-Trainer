@@ -19,26 +19,21 @@ It boots in seconds by using RunPod's officially cached PyTorch container, and a
 
 ## 🛠️ How to Deploy on RunPod
 
-### 1. Build and Push the Docker Image (via GitHub/Local)
+### 1. Build and Push the Docker Image (Automated via GitHub)
 
-To publish this as your own template, build the Docker image and push it to Docker Hub or GHCR.
+This repository is set up with a **GitHub Action** that automatically builds and publishes the Docker image to the GitHub Container Registry (GHCR) every time you push code to the `main` branch. 
 
-```bash
-# 1. Build the image
-docker build -t your-dockerhub-username/ltx2-trainer:latest .
+Your image will be available at:
+`ghcr.io/ai-jubied/ltx2-instant-trainer:latest`
 
-# 2. Push the image to your registry
-docker push your-dockerhub-username/ltx2-trainer:latest
-```
-
-*(You can also set up a GitHub Action to automatically build and push the `Dockerfile` in this repo whenever you commit!)*
+*(Note: Because your repository is Public, the GHCR package will also be public and RunPod can pull it without needing any login credentials!)*
 
 ### 2. Create the Template in RunPod
 
 Go to your [RunPod Custom Templates](https://console.runpod.io/templates) and create a new template with the following settings:
 
 *   **Template Name:** `LTX-2 Trainer (Instant Boot)`
-*   **Container Image:** `your-dockerhub-username/ltx2-trainer:latest` (or whatever you pushed it as)
+*   **Container Image:** `ghcr.io/ai-jubied/ltx2-instant-trainer:latest`
 *   **Container Disk:** `10 GB` (The container is thin, so it needs very little space!)
 *   **Volume Disk:** `100 GB+` (All LTX-2 models and your training datasets will be stored here).
 *   **Volume Mount Path:** `/workspace`
