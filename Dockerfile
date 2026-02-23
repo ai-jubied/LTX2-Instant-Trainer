@@ -15,6 +15,9 @@ ENV WORKSPACE=/workspace
 # Set HF_HOME so models are downloaded to the persistent volume
 ENV HF_HOME=/workspace/huggingface
 
+# ---- Install uv ----
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+
 # ---- System Dependencies ----
 # These install quickly and keep the Docker image extremely thin.
 RUN apt-get update --yes && \

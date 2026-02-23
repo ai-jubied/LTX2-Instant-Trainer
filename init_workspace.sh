@@ -18,11 +18,7 @@ if [ -d "$LTX_DIR" ] && [ -d "$VENV_DIR" ]; then
 else
     echo ">> First boot detected! Installing LTX-2 to the persistent volume..."
 
-    # 1. Install uv for extremely fast pip installs
-    curl -LsSf https://astral.sh/uv/install.sh | sh
-    export PATH="$HOME/.local/bin:$PATH"
-
-    # 2. Clone LTX-2
+    # 1. Clone LTX-2
     echo ">> Cloning Lightricks/LTX-2..."
     cd $WORKSPACE_DIR
     git clone --depth 1 https://github.com/Lightricks/LTX-2.git
